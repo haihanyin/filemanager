@@ -13,11 +13,11 @@ $('a.file-edit').click(function () {
     var fileInfoRowId = $(this).attr("id").replace("edit_", "fileInfo_");
     var fileInfoRow = $.find("#" + fileInfoRowId);
     var fileId = $(fileInfoRow).find('td#' + fileInfoRowId + '_id').text();
-    $('#dlgFileId').text(fileId);
+    $('#dlgFileId').val(fileId);
     var filePath = $(fileInfoRow).find('td#' + fileInfoRowId + '_filePath').text();
-    $('#dlgFileName').text(filePath);
+    $('#dlgFileName').val(filePath);
     var fileTags = $(fileInfoRow).find('td#' + fileInfoRowId + '_tags').text()
-    $('#dlgFileTags').text(fileTags);
+    $('#dlgFileTags').val(fileTags);
     var fileDates = $(fileInfoRow).find('td#' + fileInfoRowId + '_keyDates').text();
-    $('#dlgFileDates').text(fileDates);
+    $('#dlgFileDates').val(fileDates);
 });

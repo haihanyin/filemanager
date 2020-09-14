@@ -6,6 +6,7 @@ import com.github.hhy.filemanager.service.InfoSearchService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,5 +65,11 @@ public class FileManagerController {
         final List<FileInfoDto> fileInfoDtos = infoSearchService.searchByFileName(name);
         model.addAttribute("fileInfoDtoList", fileInfoDtos);
         return "index";
+    }
+
+    @PostMapping(value = "/updateFileInfo")
+    public String updateFileInfo(FileInfoDto fileInfoDto) {
+        infoLoadService.update(fileInfoDto);
+        return "redirect:/filemanager";
     }
 }

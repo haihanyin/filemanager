@@ -1,17 +1,21 @@
+filemanager:
+  root-path: C:\Users\kh83kh\_Work\stories\dirc-dmd
+  db-path: C:\Users\kh83kh\_Work\test.db
 
 spring:
   datasource:
-    url: jdbc:h2:mem:filemanager
+    url: jdbc:h2:file:${filemanager.db-path}
     driver-class-name: org.h2.Driver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
 
 logging:
   level:
     root: INFO
-
-filemanager:
-  root-path: C:\Users\kh83kh\_Work\stories\dirc-dmd
 
 server:
   port: 8080

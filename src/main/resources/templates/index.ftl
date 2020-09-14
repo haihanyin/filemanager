@@ -8,8 +8,8 @@
     <script src="/webjars/bootstrap/4.5.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<table>
-    <thead class="table">
+<table class="table table-bordered">
+    <thead>
     <tr>
         <th scope="col">Id</th>
         <th scope="col">File Path</th>
@@ -50,30 +50,32 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
+            <form action="/filemanager/updateFileInfo", method="post">
+                <div class="modal-body">
+
                     <div class="form-group">
-                        <label>File Id</label>
-                        <label id="dlgFileId">12345</label>
+                        <label for="dlgFileId">File Id</label>
+                        <input type="text" class="form-control" id="dlgFileId" name="id" readonly />
                     </div>
                     <div class="form-group">
-                        <label>File Name</label>
-                        <label id="dlgFileName">File Name</label>
+                        <label for="dlgFileName">File Name</label>
+                        <input type="text" class="form-control" id="dlgFileName" name="filePath" readonly />
                     </div>
                     <div class="form-group">
                         <label for="fileTags">Tags</label>
-                        <textarea type="text" rows="3" class="form-control" id="dlgFileTags" placeholder="tags"></textarea>
+                        <textarea type="text" rows="3" class="form-control" name="tags" id="dlgFileTags"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="keyDates">Key dates</label>
-                        <input type="text" class="form-control" id="dlgFileDates" placeholder="2020-09-14">
+                        <input type="text" class="form-control" id="dlgFileDates" name="keyDates" placeholder="2020-09-14">
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

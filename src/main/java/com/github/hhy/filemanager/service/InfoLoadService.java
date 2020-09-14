@@ -58,7 +58,8 @@ public class InfoLoadService {
         final Set<String> relativePaths = files.stream()
                 .map(file -> rootPath.relativize(file.toPath()).toString().replace("\\", "/"))
                 .collect(Collectors.toSet());
-        final Set<String> savedRelativePaths = fileInfoDao.findAll().stream().map(FileInfo::getFilePath).collect(Collectors.toSet());
+        final List<FileInfo> all = fileInfoDao.findAll();
+        final Set<String> savedRelativePaths = all.stream().map(FileInfo::getFilePath).collect(Collectors.toSet());
         for (String relativePath : relativePaths) {
             if (!savedRelativePaths.contains(relativePath)) {
                 final FileInfo fileInfo = new FileInfo();
@@ -73,14 +74,14 @@ public class InfoLoadService {
         final Optional<FileInfo> optionalFileInfo = fileInfoDao.findById(id);
         if (optionalFileInfo.isPresent()) {
             final FileInfo fileInfo = optionalFileInfo.get();
-            if (fileInfoDto.getKeyDates() != null) {
+            if (fileInfoDto.getKeyDates() != null && fileInfoDto.getKeyDates().length() > 0) {
                 final String[] keyDates = fileInfoDto.getKeyDates().split(",");
                 setDate(fileInfo, keyDates, 0, FileInfo::setKeyDate1);
                 setDate(fileInfo, keyDates, 1, FileInfo::setKeyDate2);
                 setDate(fileInfo, keyDates, 2, FileInfo::setKeyDate3);
             }
             fileInfo.setTags(fileInfoDto.getTags().toLowerCase());
-            fileInfoDao.save(fileInfo);
+            fileInfoDao.saveAndFlush(fileInfo);
         }
     }
 
