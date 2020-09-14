@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -21,6 +22,10 @@ public class FileOpService {
 
     public void openFile(String name) {
         final Path filePath = Paths.get(fileManagerRootPath).resolve(name);
+        if (!Files.exists(filePath)) {
+            log.warn("File " + name + " does not exist.");
+            return;
+        }
         log.info(filePath.toString());
         try {
             Desktop.getDesktop().open(filePath.toFile());

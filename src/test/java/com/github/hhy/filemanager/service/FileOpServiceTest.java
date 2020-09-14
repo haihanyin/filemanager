@@ -8,7 +8,6 @@ class FileOpServiceTest {
 
     @Test
     void openFile() {
-        final FileOpService fileOpService = new FileOpService("C:\\Users\\kh83kh\\Downloads");
-        fileOpService.openFile("epdf.pub_camel-in-action.pdf");
+
     }
 }
